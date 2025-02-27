@@ -18,22 +18,23 @@ CPU_COUNT = os.cpu_count()
 MAX_WORKERS = min(8, CPU_COUNT * 2)
 
 # 폴더 경로 설정
-DOWNLOAD_PATH = "./videos"
-ICON_PATH = "./icons"
-MAP_FILE = "./cctv_weather_map.html"
+DOWNLOAD_PATH = "./test/videos"
+ICON_PATH = "./test/icons"
+MAP_FILE = "./test/cctv_weather_map.html"
 
 # 날씨별 아이콘 설정
 WEATHER_ICONS = {
     "맑음": os.path.join(ICON_PATH, "clear.png"),
-    "흐림": os.path.join(ICON_PATH, "cloudy.png"),
+    "흐림": os.path.join(ICON_PATH, "clear.png"),
     "비": os.path.join(ICON_PATH, "rain.png"),
     "눈": os.path.join(ICON_PATH, "snow.png"),
     "안개": os.path.join(ICON_PATH, "fog.png"),
     "분석 실패": os.path.join(ICON_PATH, "error.png"),
 }
 
+
 # API 인증키 불러오기
-with open("AuthKey_NewAPI.txt", "r", encoding="utf-8") as file:
+with open("./test/AuthKey_NewAPI.txt", "r", encoding="utf-8") as file:
     API_KEY = file.read().strip()
 
 CCTV_API_URL = f"https://openapi.its.go.kr:9443/cctvInfo?apiKey={API_KEY}&type=ex&cctvType=2&minX=126.953356&maxX=127.147719&minY=37.3897&maxY=37.447492&getType=json"
@@ -43,7 +44,7 @@ cctv_weather_data = []  # 지도 데이터 저장 리스트
 # 기상청 단기 예보 API URL
 WEATHER_API_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
 
-with open("WeatherForecastAPI_KEY.txt", "r", encoding="utf-8") as file:
+with open("./test/WeatherForecastAPI_KEY.txt", "r", encoding="utf-8") as file:
     WeatherForecastAPI_KEY = file.read().strip()
 
 # 기상청 API 요청 함수
@@ -289,7 +290,7 @@ def main():
         print("🌍 지도 파일 생성 완료!")
 
     # /videos 폴더 내의 .mp4 파일 삭제
-    video_folder = "./videos"
+    video_folder = "./test/videos"
     mp4_files = glob.glob(os.path.join(video_folder, "*.mp4"))
     
     for file in mp4_files:
